@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+{% block content %}
+<form method="post" enctype="multipart/form-data" action="">
+{% csrf_token  %}
+    <div class="jumbotron "><h1 class=" container text-center"><b>Комментарии</b></h1></div>
+    <div class="container">{% for cat in category %}
+            <button class="accordion my-3 py-2 px-3" style="background-color: lightseagreen; color: whitesmoke"><h2><b>{{ cat }}</b></h2></button>
+        {% for com in comment %}
+            {% if cat == com.category_comment %}
+    <div style="border-color: #1d2124; background-color: lavender;" class="panel table-bordered p-3 my-2"><h2><ul><li>{{ com }}</li></ul></h2></div>
+            {% endif %}
+        {% endfor %}
+  {% endfor %}
+            {% if user.is_authenticated %}
+    <button type="button" class="btn btn-danger btn-lg my-5" style="border-radius: 5px;"><a style="text-decoration: none; color: white;" href="/comment/create/">ДОБАВИТЬ КОММЕНТАРИЙ</a></button>
+
+        {% else %}
+<button type="button" id="alert" class="btn btn-danger btn-lg my-5" style="border-radius: 5px;"><a style="text-decoration: none; color: white;" href="/comments/">ДОБАВИТЬ КОММЕНТАРИЙ</a></button>
+
+<script>
+    window.onload = init;
+    function  init() {
+        var button = getElementById("alert");
+        button.onClick = handleButtonClick;
+
+    }
+function handleButtonClick() {
+alert('Добавлять комментарии могут только зарегистрированные пользователи!');
+}
+</script>
+{% endif %}
+    </div>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
+    });
+}
+</script>
+</ul>
+</form>
+
+
+{% endblock %}

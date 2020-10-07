@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+{% block content %}
+{% load static %}
+{% include "includes/navbar.html" %}
+<h1 class="container jumbotron titleac text-center"><b>Личный кабинет: {{user.username}}</b></h1>
+<div class="container">
+    <div class="row ">
+        <div class="col-xm-4 mx-2">
+            <button  class="btn three btn-lg">
+                <a href="/place">Создать место</a>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="container">
+    {% if user_favorites.count is not 0 %}
+    <h2 class="mt-4 text-center"><b>Избранное:</b></h2><hr>
+        {% for f in user_favorites %}
+            <form action="{% url 'detail' f.place_favorite.id %}" method='POST'>
+                {% csrf_token %}
+                    <img src="{{ f.place_favorite.pictures_place.url}}" class="pict p-2 m-4">
+                        <button type="submit" class="btn btn-lg btn-outline-info ">{{ f }}</button>
+            </form>
+        {% endfor %}
+    {% else %}
+        <h2 class="mt-4"><b>Избранное: у Вас пока что нет добавленных мест</b></h2><hr>
+    {% endif %}
+
+    {% if user_deal.count is not 0 %}
+    <h2 class="mt-4 text-center"><b>Сделки:</b></h2><hr>
+    <div class="table-bordered p-3" style="background-color: lightcyan;">
+       {% for d in user_deal %}
+  <ul><li> <h4><b> {{ d.name_deal }}:</b> {{ d.result }} руб.</h4></li></ul>
+        {% endfor %}</div>
+    {% endif %}
+</div>
+{% endblock %}

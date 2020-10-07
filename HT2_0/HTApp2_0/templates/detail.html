@@ -1,0 +1,71 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<div class="jumbotron titledet text-center"> <h1><b>{{ pl.name_place }}</b></h1> </div>
+<div class="container"><div class="jumbotron">
+{% if user.is_authenticated %}
+<span style="font-size:30px;cursor:pointer" class="mb-2" onclick="openNav()">☰ рассчитать стоимость</span>
+    <div id="mySidenav" class="sidenav my-5">
+        <a href="javascript:void(0)" class="closebtn my-5" style="text-decoration: none;" onclick="closeNav()">×</a>
+            <form class="my-5 ml-2" action="{% url 'add_deal' pl.id %}" method='POST'>
+                {% csrf_token %}
+                <h4><b>Наименование сделки:</b></h4>
+                <input name="name_deal" type="text" placeholder="Введите наименование сделки"required style="width: 274px; height: 45px; padding: 2%; border-radius: 5px; border-color: lightseagreen; text-align: center"/>
+                </p>
+                    <h4><b>Количество билетов:</b></h4>
+                <input name ="count_ticket" type="number" placeholder="Кол-во"required style="width:136px; height: 45px; padding: 2%; border-radius: 5px; border-color: lightseagreen; text-align: center;"/>
+                </p>
+                    <h4><b>Льготы (1- имеются, 0- нет льгот):</b></h4>
+                <p><input name="privileges_deal" type="number" min="0" max="1" placeholder="1/0" style="width:68px; height: 45px; padding: 2%; border-radius: 5px; border-color: lightseagreen; text-align: center;"></p>
+                </p>
+                <button type="submit" class="btn mb-5  btn-lg " style="background-color: lightseagreen; color: white; ">Добавить в сделки</button>
+            </form>
+        </div>
+{% endif %}
+<div class="" > <img src="{{ pl.pictures_place.url }}" class=" pict p-2 ml-3" style="margin-bottom: 5%; width:80%; height: 40%;" alt="{{ pl.name_place }}">
+    <div class="property mx-5">
+         <h4><b>Категория:</b> {{ pl.category }}</h4>
+        <h4><b>Описание:</b> {{ pl.description_place }}</h4>
+        <h4> <b>Стоимость:</b> {{ pl.cost_place }} </h4>
+        <h4> <b>Адрес:</b> {{pl.address_place}} </h4>
+    </div>
+    {% if user.is_authenticated %}
+        <form action="{% url 'add_favorite' pl.id %}" method='POST'>
+            {% csrf_token %}
+            <button class="btn  btn-danger btn-lg m-4" type="submit">Добавить в избранное</button>
+        </form>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <form action="{% url 'add_comment' pl.id %}" method='POST'>
+    {% csrf_token %}
+        <div class="input-group my-5" >
+    <textarea name="text_comment"  placeholder="Текст комментария" style="width: 50%; height: 100px; padding: 2%;"></textarea>
+    <button  type="submit" class="btn btn-info butdetail">ДОБАВИТЬ</button>
+        </div>
+    </form>
+    {% else %}
+        <form  method='POST'>
+    {% csrf_token %}
+<div class="input-group m-5" >
+    <textarea name="text_comment" required="" placeholder="Текст комментария" style="width: 50%; height: 100px; padding: 2%;"></textarea>
+
+    <button onclick="alert('Только зарегистрированные пользователи могут оставлять комментарии!')" type="submit" class="btn btn-info butdetail" >ДОБАВИТЬ</button>
+    <button onclick="alert('Если вы зарегистрируетесь, то сможете добавлять понравившиеся места в свой личный кабинет и рассчитывать стоимость поездки!')" id ="btn-tooltip" title="нажми на меня" type="submit" class="btn btn-outline-danger btn-lg mx-5 my-3"><h2><b>!</b></h2></button>
+
+</div>
+        </form>
+    {% endif %}
+        <h2><b>Комментарии</b></h2>
+        <hr class="container">
+    {% if comments_list %}
+        {% for c in comments_list %}
+            <h4><strong>{{ c.author_comment }}</strong></h4>
+            <h3 class="table-bordered bg-light p-3">{{ c.text_comment }}
+            </h3>
+        {% endfor %}
+    {% endif %}
+</div>
+</div>
+</div>
+{% endblock %}
+

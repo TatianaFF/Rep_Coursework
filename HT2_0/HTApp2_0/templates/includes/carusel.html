@@ -1,0 +1,17 @@
+{% block content %}
+{% load static %}
+
+<div class="container">
+  <ul id="slides" class="shad">
+    <li class="slide showing">Данный сайт представляют Алёна и Таня!</li>
+    <li class="slide">
+        {% if user.is_authenticated %}
+            <p>Вы вошли на сайт как пользователь: {{ user.username }}! </p>
+        {% else %}
+            <p>Если вы хотите добавит места в свой список, Вам необходимо авторизоваться! </p>
+        {% endif %}</li>
+    <li class="slide">Зарегистрируйтесь, пишите комментарии, добавляйте места, рассчитавете стоимость!</li>
+  </ul>
+</div>
+
+{% endblock %}

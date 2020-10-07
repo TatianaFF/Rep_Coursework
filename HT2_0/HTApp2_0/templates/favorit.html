@@ -1,0 +1,18 @@
+{% extends 'account.html' %}
+{% block content %}
+{% include "includes/navbar.html" %}
+<h1 class="jumbotron text-center">Create favorite</h1>
+  {% include "includes/threebotons.html" %}
+<div class="container table-bordered  p-5">
+<form class="border" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+   <ul class="flex-outer">
+       <li class="flex-inner">
+         <b>{{ form.as_p }}</b>
+       </li>
+     <button class="btn btn-outline-success border-dark align-content-center" type="submit"><b>Submit New Favorite</b></button>
+
+   </ul>
+</form>
+</div>
+{% endblock %}

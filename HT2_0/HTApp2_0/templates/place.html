@@ -1,0 +1,16 @@
+{% extends 'account.html' %}
+{% block content %}
+{% include "includes/navbar.html" %}
+<h1 class="container jumbotron titlepl text-center"><b>Создать место</b></h1>
+<div class="container jumbotron bordplace  p-5">
+<form class=" " method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+   <ul class="flex-outer container">
+       <li class="">
+           <h3><b>{{ form.as_p }}</b></h3>
+       </li>
+       <button class="btn btn-outline-info border-dark btn-lg" type="submit"><b>Создать новое место</b></button>
+   </ul>
+</form>
+</div>
+{% endblock %}

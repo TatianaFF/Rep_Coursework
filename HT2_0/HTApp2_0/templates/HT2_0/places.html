@@ -1,0 +1,22 @@
+{% extends '../main.html' %}
+{% block content %}
+<div class="jumbotron"><h1 class=" container " style="text-align: center "><b>{{place.name_place}}</b></h1></div>
+<div class="jumbotron container table-bordered">
+    <div class="row">
+        <div class="col-xs-6  m-4">
+    <img src="{{ place.pictures_place.url}}" class="pict p-2" alt="{{ place.name_place }}"style=" ">
+        </div>
+        <div class="col-xs-6 m-5">
+            <div class=" p-3">
+    <h4><b>Категория:</b> {{place.category}} </h4>
+    <h4><b>Описание:</b> {{place.description_place}}</h4>
+    <h4> <b>Стоимость:</b> {{place.cost_place}} </h4>
+    <h4> <b>Адрес:</b> {{place.address_place}} </h4>
+               {% if user.is_authenticated %}
+                <button><a href="/favorite">добавить в избранное</a></button>
+{% endif %}</div>
+                </div>
+
+    </div>
+</div>
+{% endblock %}

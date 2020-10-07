@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="jumbotron "><h2 class="container ">Registration</h2></div>
+<div class="container table-bordered  p-5" style="background-color: lightblue;">
+
+<form method="post" action="/registration/">
+        <label for="username">Логин</label>
+        <input id="username" type="text" name="username">
+
+        <label for="password">Пароль</label>
+        <input id="password" type="password" name="password">
+
+        <label for="password2">Повторите пароль</label></td>
+        <input id="password2" type="password" name="password2">
+
+        <input type="submit" value="Регистрация"></td>
+</form>
+</div>
+{% endblock %}

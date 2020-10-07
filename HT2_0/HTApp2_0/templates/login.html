@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="jumbotron title "><h1 class=" text-center"><b>Вход</b></h1></div>
+    <div class="jumbotron container bordlogin table-bordered  p-5 text-center" style="background-color: lightblue;" >
+         <form action="" method="post">
+              {% csrf_token %}
+              <!-- as_p для того, чтобы каждый элемент формы был с новой строки -->
+             <h3> <b>{{ form.as_p }}</b></h3>
+              <button class="btn btn-info btn-lg" type="submit">Войти</button>
+         </form>
+    </div>
+</div>
+{% if error %}
+    {{error}}
+<p>Вы ввели что-то неправильно. Попробуйте ещё раз!</p>
+{% endif %}
+{% endblock %}
