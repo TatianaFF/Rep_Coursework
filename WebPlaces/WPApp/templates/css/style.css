@@ -1,0 +1,461 @@
+html, body {
+    background: yellow;
+  height: 100%;
+  font-family: 'Lobster', cursive;
+}
+
+.up:hover {
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.contend, .header, .footer {
+  box-sizing: border-box;
+  padding: 20px;
+ width: 100%;
+}
+.pict {
+  border: none;
+  border:10px solid lightseagreen;
+  height: 324px;
+  width: 600px;
+}
+
+.icon-menu {
+  display: none;
+  height: 30px;
+  width: 12px;
+  float: right;
+  cursor: pointer;
+  margin-left: 2px;
+  margin-right: -5px;
+}
+.divide {
+  display: block;
+  height: 2px;
+  margin: 3px 0;
+  background-color: darkcyan;
+}
+.mainContent {
+  overflow: hidden;
+}
+.sidebar {
+  -webkit-transition: right 1s ease-out 0.5s;
+  -moz-transition: right 1s ease-out 0.5s;
+  -o-transition: right 1s ease-out 0.5s;
+  transition: right 1s ease-out 0.5s;
+}
+
+.contend {
+  min-height: calc(100% - 58px);
+  margin-bottom: -58px;
+}
+.contend:after {
+    content: '';
+    display: block;
+}
+.contend:after, .footer {
+  height: 58px;
+}
+a {
+    text-decoration: none;
+  color: lightseagreen;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lobster', cursive;
+}
+.shad {
+    box-shadow: 0px 10px 15px 10px black;
+}
+.sizepict {
+  height: 300px;
+}
+.tall {
+  height: 350px;
+}
+
+.table-bordered {
+    border-radius: 10px;
+}
+.flex-outer li, .flex-inner {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 0 120px;
+  align-items: center;
+  max-width: 220px;
+    font-family: 'Lobster', cursive;
+}
+
+.three {
+  background-color:  darkcyan;
+}
+.three a {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+/*carusel*/
+
+#slides{
+    position: relative;
+    height: 300px;
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+
+.slide{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
+}
+
+.showing{
+    opacity: 1;
+    z-index: 2;
+}
+
+.controls{
+    display: none;
+}
+
+.slide{
+    font-size: 40px;
+    padding: 40px;
+    text-align: center;
+    box-sizing: border-box;
+    background: #333;
+    color: #fff;
+    background-size: cover;
+}
+
+.slide:nth-of-type(1){
+    background-color: gray;
+  background-image: url('https://top10.travel/wp-content/uploads/2017/09/teatr-opery-baleta-krasnoyarsk.jpg');
+}
+
+.slide:nth-of-type(2){
+    background-color: darkcyan;
+  background-image: url('https://tourism.restexpert.ru/uploads/place/1254/644x483/1499501118065239100.jpg');
+}
+
+.slide:nth-of-type(3){
+    background-color: lightseagreen;
+    background-image: url('https://autogear.ru/misc/i/gallery/64080/2321533.jpg');
+}
+
+.controls{
+  background: #333;
+  color: #fff;
+  padding: 2px 0px;
+  font-size: 15px;
+  cursor: pointer;
+  margin: 5px 0px 0px 10px;
+  width: 30px;
+  height: 5px;
+}
+
+.controls:hover,
+.controls:focus{
+  background: #eee;
+  color: #333;
+}
+
+.container{
+  position: relative;
+}
+
+.buttons{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 10;
+  font-size: 0px;
+  margin-left: 15px;
+}
+/*end carusel*/
+[class*="col-"] {
+  margin-bottom: 5px;
+}
+
+/* vertical spacing between columns */
+.row-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.content {
+  height: 350px;
+}
+
+header {
+    width: 100%;
+    box-shadow: 3px 3px 1px rgba(0,0,0,.05);
+    padding: 15px 0;
+    margin-bottom: 0;
+    position: relative;
+}
+nav {
+  width: 100%;
+}
+/* логотип */
+.logo {
+    display: block;
+    float: left;
+}
+/* меню */
+#menu {
+    float: right;
+}
+#menu li {
+    display: inline-block;
+    margin-right: 30px;
+
+}
+#menu a {
+    color: lightgrey;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    display: block;
+    line-height: 40px;
+}
+#menu a:hover {
+    color: darkcyan;
+    text-decoration: none;
+}
+#menu li:last-child  {
+    margin-right: 0;
+}
+
+/* кнопка переключения меню, появляющаяся при ширине 1024px */
+.nav-toggle {
+    display: none;
+    position: relative;
+    float: right;
+    width: 40px;
+    height: 40px;
+    margin-left: 15px;
+    background: darkcyan;
+    cursor: pointer;
+}
+.nav-toggle span {
+    display: block;
+    position: absolute;
+    top: 19px;
+    left: 8px;
+    right: 8px;
+    height: 2px;
+    background: white;
+}
+.nav-toggle span:before, .nav-toggle span:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: white;
+}
+.nav-toggle span:before {
+top: -10px;
+}
+.nav-toggle span:after {
+bottom: -10px;
+}
+/* класс, который будет добавлен в верхнему меню при нажатии на кнопку и покажет скрытое меню*/
+#menu.active {
+max-height: 1000px;
+}
+@media (max-width: 800px) {
+  .slide {
+    font-size: 160%;
+  }
+  h1 {
+    font-size: 180%;
+  }
+  .butdetail {
+    width: 30%;
+    padding: 0;
+  }
+  .pict {
+    width: 85%;
+  }
+  .nav-toggle {
+    margin-right: 10%;
+  }
+  html {
+    width: 92%;
+  }
+  .contend {
+    width: 100%;
+  }
+  .bordplace {
+    width: 470px;
+  }
+  .sidenav {
+    width: 70px;
+  }
+  #mySidenav {
+    width: 500px;
+  }
+  .closebtn {
+    margin-right: 70px;
+  }
+  .bordlogin {
+        width: 470px;
+  }
+  .borderpegister {
+     width: 470px;
+  }
+  .title {
+      width: 95%;
+  }
+}
+@media (max-width: 1024px) {
+/* показываем кнопку для переключения верхней навигации */
+.nav-toggle {
+    display: block;
+}
+header {
+    padding: 10px 0;
+}
+
+/* скрываем верхнее меню, отменяем обтекание, позиционируем его, сместив на высоту шапки сайта */
+#menu {
+    max-height: 0;
+    background: white;
+    float: none;
+    position: absolute;
+    overflow: hidden;
+    top: 63px;
+    right: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    z-index: 3;
+}
+/* делаем элементы списка блочными, чтобы они располагались друг под другом */
+#menu li {
+    display: block;
+    text-align: center;
+    border-bottom: 1px solid lightgrey;
+    margin-right: 0;
+}
+/* отменяем обтекание левой и правой колонок, устанавливаем им ширину 100%*/
+.posts-list, aside {
+    width: 100%;
+    float: none;
+}
+.widget-post-title {
+    font-size: 1.5em;
+}
+.pict {
+    border:10px solid lightseagreen;
+    height: 200px;
+    width: 400px;
+}
+.sidenav {
+    padding-top: 30px; /* Place content 60px from the top */
+}
+}
+
+@media (max-width: 1024px) {
+/* отменяем обтекание для логотипа и выравниваем по центру*/
+    .logo {
+    float: none;
+    margin: 0 auto 15px;
+    display: table;
+}
+.logo span {
+    margin: 0 2px;
+}
+/* позиционируем меню на увеличившуюся высоту шапки */
+#menu {
+    top: 118px;
+}
+/* позиционируем форму поиска по левому краю */
+
+/* убираем верхнюю и нижнюю границы и выравниваем кнопку по центру */
+.post-footer {
+    border-top: none;
+    border-bottom: none;
+    text-align: center;
+}
+
+/* отменяем обтекание для столбцов подвала страницы */
+.footer-col {
+    float: none;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.footer-col:last-child {
+    text-align: center;
+    margin-bottom: 0;
+}
+}
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+}
+
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: lightskyblue;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px;
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    text-align: center;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+@media screen and (max-height: 450px) {
+.sidenav {padding-top: 15px;}
+.sidenav a {font-size: 18px;}
+}
