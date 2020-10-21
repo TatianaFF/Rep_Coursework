@@ -13,25 +13,26 @@
     </div>
 </div>
 <div class="container">
-    {% if user_favorites.count is not 0 %}
-    <h2 class="mt-4 text-center"><b>Избранное:</b></h2><hr>
+    {% if user_favorites|length == 0 %}
+        <h1 class="mt-4 text-center"><b>Избранное: у Вас нет избранных мест</b></h1><hr>
+        {% else %}
+        <h2 class="mt-4 text-center"><b>Избранное:</b></h2><hr>
+        <div class="row  row-flex table-bordered jumbotron">
         {% for f in user_favorites %}
             <form action="{% url 'detail' f.place_favorite.id %}" method='POST'>
                 {% csrf_token %}
-                    <img src="{{ f.place_favorite.pictures_place.url}}" class="pict p-2 m-4">
-                        <button type="submit" class="btn btn-lg btn-outline-info ">{{ f }}</button>
+                <div class="up  col-md-pull-4  ml-5 my-4 ">
+                    <div class="jump card shad" style="width: 18rem; height: 20em;">
+                        <a href="/{{f.place_favorite.id}}" class="text-center pt-1 pb-2" style="width: 18rem; height: 4em; text-decoration: none;color: whitesmoke;background-color: lightseagreen;"><h4>{{ f.place_favorite }}</h4></a>
+                    <img src="{{ f.place_favorite.pictures_place.url}}" class="card-img-top" alt="{{ pl.name_place }}"style="height: 10em;">
+                        <div class="card-body" style="text-align: center; background-color: lightcyan">
+                        <button type="submit" class="btn btn-primary">Узнать подробнее</button>
+                            </div>
+                    </div>
+                    </div>
             </form>
         {% endfor %}
-    {% else %}
-        <h2 class="mt-4"><b>Избранное: у Вас пока что нет добавленных мест</b></h2><hr>
+        </div>
+        </div>
     {% endif %}
-
-    {% if user_deal.count is not 0 %}
-    <h2 class="mt-4 text-center"><b>Сделки:</b></h2><hr>
-    <div class="table-bordered p-3" style="background-color: lightcyan;">
-       {% for d in user_deal %}
-  <ul><li> <h4><b> {{ d.name_deal }}:</b> {{ d.result }} руб.</h4></li></ul>
-        {% endfor %}</div>
-    {% endif %}
-</div>
 {% endblock %}

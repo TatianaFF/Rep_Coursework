@@ -28,7 +28,17 @@ def detail(request, place_id):
 
     comments_list = pl.comment_set.order_by()
 
-    return render(request, 'detail.html', {'pl': pl, 'comments_list': comments_list})
+    favorites = Favorite.objects.all()
+    user_favorites = []
+    for f in favorites:
+        if f.user_favorite == request.user:
+            user_favorites.append(f)
+    try:
+        favor = Favorite.objects.get(place_favorite=pl)
+    except:
+        favor = 0
+
+    return render(request, 'detail.html', {'pl': pl, 'comments_list': comments_list, 'user_favorites': user_favorites, 'favor': favor})
 
 
 def add_comment(request, place_id):
@@ -52,6 +62,13 @@ def add_favorite(request, place_id):
         fav.place_favorite = pl
         fav.save()
 
+    return HttpResponseRedirect(reverse('detail', args=(pl.id,)))
+
+
+def remove_favorite(request, place_id):
+    pl = Place.objects.get(id=place_id)
+    fav = Favorite.objects.get(place_favorite=pl)
+    Favorite.delete(fav)
     return HttpResponseRedirect(reverse('detail', args=(pl.id,)))
 
 
@@ -107,4 +124,3 @@ class LogoutView(View):
         logout(request)
 
         return HttpResponseRedirect("/")
-

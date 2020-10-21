@@ -23,6 +23,7 @@ urlpatterns = [
     path('<int:place_id>/', views.detail, name='detail'),
     path('<int:place_id>/add_comment/', views.add_comment, name='add_comment'),
     path('<int:place_id>/add_favorite/', views.add_favorite, name='add_favorite'),
+    path('<int:place_id>/remove_favorite/', views.remove_favorite, name='remove_favorite'),
     path('place/', views.CreatePlace.as_view(), name='place'),
     path('account/', views.account, name='account'),
     path('about_us/', views.about_us),

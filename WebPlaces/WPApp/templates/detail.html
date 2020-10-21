@@ -3,25 +3,6 @@
 {% block content %}
 <div class="jumbotron titledet text-center"> <h1><b>{{ pl.name_place }}</b></h1> </div>
 <div class="container"><div class="jumbotron">
-{% if user.is_authenticated %}
-<span style="font-size:30px;cursor:pointer" class="mb-2" onclick="openNav()">☰ рассчитать стоимость</span>
-    <div id="mySidenav" class="sidenav my-5">
-        <a href="javascript:void(0)" class="closebtn my-5" style="text-decoration: none;" onclick="closeNav()">×</a>
-            <form class="my-5 ml-2" action="{% url 'add_deal' pl.id %}" method='POST'>
-                {% csrf_token %}
-                <h4><b>Наименование сделки:</b></h4>
-                <input name="name_deal" type="text" placeholder="Введите наименование сделки"required style="width: 274px; height: 45px; padding: 2%; border-radius: 5px; border-color: lightseagreen; text-align: center"/>
-                </p>
-                    <h4><b>Количество билетов:</b></h4>
-                <input name ="count_ticket" type="number" placeholder="Кол-во"required style="width:136px; height: 45px; padding: 2%; border-radius: 5px; border-color: lightseagreen; text-align: center;"/>
-                </p>
-                    <h4><b>Льготы (1- имеются, 0- нет льгот):</b></h4>
-                <p><input name="privileges_deal" type="number" min="0" max="1" placeholder="1/0" style="width:68px; height: 45px; padding: 2%; border-radius: 5px; border-color: lightseagreen; text-align: center;"></p>
-                </p>
-                <button type="submit" class="btn mb-5  btn-lg " style="background-color: lightseagreen; color: white; ">Добавить в сделки</button>
-            </form>
-        </div>
-{% endif %}
 <div class="" > <img src="{{ pl.pictures_place.url }}" class=" pict p-2 ml-3" style="margin-bottom: 5%; width:80%; height: 40%;" alt="{{ pl.name_place }}">
     <div class="property mx-5">
          <h4><b>Категория:</b> {{ pl.category }}</h4>
@@ -34,6 +15,12 @@
             {% csrf_token %}
             <button class="btn  btn-danger btn-lg m-4" type="submit">Добавить в избранное</button>
         </form>
+        {% if favor != 0 and favor in user_favorites %}
+         <form action="{% url 'remove_favorite' pl.id %}" method='DELETE'>
+            {% csrf_token %}
+            <button class="btn  btn-danger btn-lg m-4" type="submit">Удалить из избранного</button>
+        </form>
+            {% endif %}
     {% endif %}
     {% if user.is_authenticated %}
     <form action="{% url 'add_comment' pl.id %}" method='POST'>
